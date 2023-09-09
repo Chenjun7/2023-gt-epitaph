@@ -42,6 +42,7 @@ public class FindNeighborsNode : Node
 
         _behaviorTree.SeparationEnemies = enemiesInSeparaionRange;
         _behaviorTree.VisionEnemies = enemiesInVisionRange;
+        _behaviorTree.totalDeltaV = Vector3.zero;
         return NodeState.SUCCESS;
     }
 }
