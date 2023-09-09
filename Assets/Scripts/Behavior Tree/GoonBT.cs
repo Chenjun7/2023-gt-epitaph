@@ -11,8 +11,8 @@ public class GoonBT : BehaviorTree
     [SerializeField] private float separationFactor;
     [SerializeField] private float cohesionFactor;
     [SerializeField] private float alignmentFactor;
-    private List<NavMeshAgent> _visionEnemies;
-    private List<NavMeshAgent> _separationEnemies;
+    public List<NavMeshAgent> VisionEnemies { get; set; }
+    public List<NavMeshAgent> SeparationEnemies { get; set; }
 
     // Start is called before the first frame update
     protected override Node SetupTree() {
@@ -31,7 +31,7 @@ public class GoonBT : BehaviorTree
                 new FollowPlayerNode(target, agent),
                 new SequenceNode(new List<Node>{
                     new FindNeighborsNode(this, visionRadius, collisionRadius),
-                    new SeparationNode(this, _separationEnemies, separationFactor),
+                    new SeparationNode(this, separationFactor),
                     new CohesionNode(this, _visionEnemies, cohesionFactor),
                     new AlignmentNode(this,_visionEnemies, alignmentFactor),
                     new ApplyDeltaV(this, agent)
@@ -42,10 +42,5 @@ public class GoonBT : BehaviorTree
         //Node root = new FollowPlayerNode(target, agent, speed);
         
         return root;
-    }
-
-    public void SetNeighborList(List<NavMeshAgent> visionEnemies, List<NavMeshAgent> separationEnemies) {
-        _visionEnemies = visionEnemies;
-        _separationEnemies = separationEnemies;
     }
 }
