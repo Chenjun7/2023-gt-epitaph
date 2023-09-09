@@ -18,8 +18,8 @@ public class FindNeighborsNode : Node
 
     public override NodeState Evaluate() {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        List<NavMeshAgent> enemiesInSeparaionRange = new List<NavMeshAgent>();
-        List<NavMeshAgent> enemiesInVisionRange = new List<NavMeshAgent>();
+        List<GameObject> enemiesInSeparaionRange = new List<GameObject>();
+        List<GameObject> enemiesInVisionRange = new List<GameObject>();
         GameObject thisEnemy = _behaviorTree.gameObject;
 
         foreach (GameObject enemy in enemies) {
@@ -27,13 +27,12 @@ public class FindNeighborsNode : Node
                 continue;
             }
 
-            NavMeshAgent enemyNavAgent = enemy.GetComponent<NavMeshAgent>();
             float distance = Vector3.Distance(enemy.transform.position, thisEnemy.transform.position);
             if (distance < _visionRadius) {
-                enemiesInVisionRange.Add(enemyNavAgent);
+                enemiesInVisionRange.Add(enemy);
             }
             if (distance < _separationRadius) {
-                enemiesInSeparaionRange.Add(enemyNavAgent);
+                enemiesInSeparaionRange.Add(enemy);
             }
         }
 

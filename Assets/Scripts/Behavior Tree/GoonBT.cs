@@ -6,13 +6,14 @@ using BTArchitecture;
 
 public class GoonBT : BehaviorTree
 {
+    public List<GameObject> VisionEnemies;
+    public List<GameObject> SeparationEnemies;
+    public Vector3 totalDeltaV;
     [SerializeField] private float visionRadius;
     [SerializeField] private float collisionRadius;
     [SerializeField] private float separationFactor;
     [SerializeField] private float cohesionFactor;
     [SerializeField] private float alignmentFactor;
-    public List<NavMeshAgent> VisionEnemies { get; set; }
-    public List<NavMeshAgent> SeparationEnemies { get; set; }
 
     // Start is called before the first frame update
     protected override Node SetupTree() {
@@ -32,8 +33,8 @@ public class GoonBT : BehaviorTree
                 new SequenceNode(new List<Node>{
                     new FindNeighborsNode(this, visionRadius, collisionRadius),
                     new SeparationNode(this, separationFactor),
-                    new CohesionNode(this, _visionEnemies, cohesionFactor),
-                    new AlignmentNode(this,_visionEnemies, alignmentFactor),
+                    new CohesionNode(this, cohesionFactor),
+                    new AlignmentNode(this, alignmentFactor),
                     new ApplyDeltaV(this, agent)
                 })
             })
