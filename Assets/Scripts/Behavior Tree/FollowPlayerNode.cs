@@ -12,7 +12,7 @@ public class FollowPlayerNode : Node
     private GameObject _target;
     private NavMeshAgent _agent;
 
-    public FollowPlayerNode(GameObject target, UnityEngine.AI.NavMeshAgent agent, float speed) {
+    public FollowPlayerNode(GameObject target, UnityEngine.AI.NavMeshAgent agent) {
         _target = target;
         _agent = agent;
     }
