@@ -466,7 +466,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 775b2743fe1296740aa09b967eb879a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
+  VisionEnemies: []
+  SeparationEnemies: []
+  totalDeltaV: {x: 0, y: 0, z: 0}
+  visionRadius: 5
+  collisionRadius: 3
+  separationFactor: 5
+  cohesionFactor: 0.3
+  alignmentFactor: 0.3
 --- !u!114 &5755290808834905394
 MonoBehaviour:
   m_ObjectHideFlags: 0

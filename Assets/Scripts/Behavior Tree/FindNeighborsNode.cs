@@ -27,8 +27,9 @@ public class FindNeighborsNode : Node
                 continue;
             }
 
+            NavMeshAgent agent = enemy.GetComponent<NavMeshAgent>();
             float distance = Vector3.Distance(enemy.transform.position, thisEnemy.transform.position);
-            if (distance < _visionRadius) {
+            if (distance < _visionRadius && agent != null) {
                 enemiesInVisionRange.Add(enemy);
             }
             if (distance < _separationRadius) {
@@ -42,7 +43,6 @@ public class FindNeighborsNode : Node
 
         _behaviorTree.SeparationEnemies = enemiesInSeparaionRange;
         _behaviorTree.VisionEnemies = enemiesInVisionRange;
-        _behaviorTree.totalDeltaV = Vector3.zero;
         return NodeState.SUCCESS;
     }
 }

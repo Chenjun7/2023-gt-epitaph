@@ -19,9 +19,11 @@ public class GoonBT : BehaviorTree
     protected override Node SetupTree() {
         GameObject target = GameObject.FindWithTag("Player");
         NavMeshAgent agent = GetComponent<NavMeshAgent>();
+        totalDeltaV = Vector3.zero;
 
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+        agent.updatePosition = false;
 
         Node root = new SelectorNode(new List<Node>{
             new SequenceNode(new List<Node>{
@@ -35,7 +37,6 @@ public class GoonBT : BehaviorTree
                     new SeparationNode(this, separationFactor),
                     new CohesionNode(this, cohesionFactor),
                     new AlignmentNode(this, alignmentFactor),
-                    new ApplyDeltaV(this, agent)
                 })
             })
         });
@@ -43,5 +44,14 @@ public class GoonBT : BehaviorTree
         //Node root = new FollowPlayerNode(target, agent, speed);
         
         return root;
+    }
+
+    private void LateUpdate() {
+        NavMeshAgent agent = GetComponent<NavMeshAgent>();
+        if (agent.isStopped) {
+            return;
+        }
+        transform.position = agent.nextPosition + totalDeltaV * Time.deltaTime;
+        totalDeltaV = Vector3.zero;
     }
 }
