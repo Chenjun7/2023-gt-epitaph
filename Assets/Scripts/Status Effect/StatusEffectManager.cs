@@ -9,16 +9,19 @@ public class StatusEffectManager : MonoBehaviour
     private List<StatusEffectInstance> _statusEffects = new List<StatusEffectInstance>();
     private List<StatusEffectCode> _statusEffectTypes = new List<StatusEffectCode>();
 
+    public Entity entity;
     private EntityStats _stats;
     private Health _health;
 
     private float _currTime;
 
     private void Start() {
-        _stats = gameObject.GetComponent<EntityStats>();
-        if(_stats == null) Debug.LogError("Status Effect manager applied to an object with no entityStats class. This should not happen");
-        _health = gameObject.GetComponent<Health>();
-        if(_health == null) Debug.LogError("Status Effect manager applied to an object with no health class. This should not happen");
+        if(entity == null) 
+        {
+            Debug.LogError("Status Effect manager applied to an object with no entity class. This should not happen");
+        }
+        _health = entity.Health;
+        _stats = entity.EntityStats;
     }
 
     private void Update() {
