@@ -9,8 +9,7 @@ public class Entity : MonoBehaviour
     public EntityStats EntityStats => _entityStats;
     [SerializeField] private float intialHealth;
     private Health _health;
-    public float HealthVal => _health.health;
-    public Health Health => _health;
+    public float Health => _health.health;
 
     private StatusEffectManager _statusEffectManager;
     public StatusEffectManager StatusEffectManager => _statusEffectManager;
@@ -26,7 +25,6 @@ public class Entity : MonoBehaviour
 
     private bool _isDead;
 
-
     public float Attack {
         get { return attack; }
         set { attack = value; }
@@ -35,7 +33,6 @@ public class Entity : MonoBehaviour
     private void Awake() {
         _health = new(this, intialHealth);
         _statusEffectManager = gameObject.GetComponent<StatusEffectManager>();
-        _statusEffectManager.entity = this;
     }
 
     protected virtual void Start()
@@ -50,7 +47,7 @@ public class Entity : MonoBehaviour
         Debug.Log("dead");
     }
 
-    public virtual void TakeDamage(float amount)
+    public void TakeDamage(float amount)
     {
         _health.TakeDamage(amount);
     }
@@ -58,7 +55,6 @@ public class Entity : MonoBehaviour
     public virtual void DealDamage(Entity target, float dmgAmt) {
         target.TakeDamage(dmgAmt);
     }
-
 
     public void Knockback(GameObject applier) {
         Debug.Log("KNOCK");
