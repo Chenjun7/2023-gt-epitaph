@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 27071703619800689}
   - component: {fileID: 2631674410661350216}
   - component: {fileID: 8494798398200300328}
+  - component: {fileID: 4254547647280365342}
   m_Layer: 0
   m_Name: Training Dummy
   m_TagString: Untagged
@@ -173,7 +174,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8039f5099d1aeee43bd0f715a413edba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 150
+  _entityStats:
+    _stats:
+    - statName: 1
+      intialValue: 5
+      currentBaseValue: 5
+      beneficial: 1
+      maxValue:
+        v: 0
+        hasValue: 0
+      minValue:
+        v: 0
+        hasValue: 0
+  intialHealth: 500
+  knockbackDelay: 0
+  knockbackForce: 0
+  attack: 0
 --- !u!114 &8494798398200300328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,6 +206,18 @@ MonoBehaviour:
   m_Area: 1
   m_IgnoreFromBuild: 0
   m_AffectedAgents: ffffffff
+--- !u!114 &4254547647280365342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 729095485114430193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a09223cbb5a0a6c479a50e752e7d8f60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3146857510729593728
 GameObject:
   m_ObjectHideFlags: 0
